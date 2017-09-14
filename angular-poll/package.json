@@ -1,0 +1,17 @@
+{
+  "name": "angular-poll",
+  "version": "1.0.0",
+  "description": "this is the front end poll",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ng": "ng"
+  },
+  "keywords": [
+    "poll"
+  ],
+  "author": "Emanuel Dubor - Nicolas Leutwyler",
+  "license": "ISC",
+  "dependencies": {
+  }
+}
