@@ -8,6 +8,8 @@ Arquitectura de Software: Proyecto Encuesta de Intencion de Inscripcion
 
 ### Scala
 * PlayFramework
+ - Prueba de concepto con angular.
+
 
 # Integrantes
 * Emanuel Dubor 
