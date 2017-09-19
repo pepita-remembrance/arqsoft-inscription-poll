@@ -1,5 +1,6 @@
 package v1.career
 
+import scala.language.postfixOps
 import javax.inject.{Inject, Provider}
 
 import play.api.MarkerContext
@@ -37,26 +38,29 @@ class CareerResourceHandler @Inject()(
                                        careerRepository: CareerRepository)(implicit ec: ExecutionContext) {
 
   def create(careerInput: CareerFormInput)(implicit mc: MarkerContext): Future[careerResource] = {
-    val data = CareerData(CareerId("999"), careerInput.name, careerInput.description)
-    // We don't actually create the post, so return what we have
+    val data = CareerData(999, careerInput.name, careerInput.description)
     careerRepository.create(data).map { id =>
-      createCareerResource(data)
+      createCareerResource(data.copy(id = id))
     }
   }
 
   def lookup(id: String)(implicit mc: MarkerContext): Future[Option[careerResource]] = {
-    val careerFuture = careerRepository.get(CareerId(id))
-    careerFuture.map { maybePostData =>
-      maybePostData.map { postData =>
-        createCareerResource(postData)
+    val careerFuture = careerRepository.get(id toLong)
+    careerFuture.map { maybeCareerData =>
+      maybeCareerData.map { careerData =>
+        createCareerResource(careerData)
       }
     }
   }
 
   def find(implicit mc: MarkerContext): Future[Iterable[careerResource]] = {
-    careerRepository.list().map { postDataList =>
-      postDataList.map(postData => createCareerResource(postData))
+    careerRepository.list().map { careerDataList =>
+      careerDataList.map(careerData => createCareerResource(careerData))
     }
+  }
+
+  def delete(id: String)(implicit mc: MarkerContext) : Future[Long] = {
+    careerRepository.delete(id toLong).map(res => res toLong)
   }
 
   private def createCareerResource(career: CareerData): careerResource = {

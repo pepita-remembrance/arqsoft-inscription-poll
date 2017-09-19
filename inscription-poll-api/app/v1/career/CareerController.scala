@@ -17,6 +17,7 @@ case class CareerFormInput(name: String, description: String)
 class CareerController @Inject()(cc: CareerControllerComponents)(implicit ec: ExecutionContext)
     extends CareerBaseController(cc) {
 
+
   private val logger = Logger(getClass)
 
   private val form: Form[CareerFormInput] = {
@@ -45,6 +46,13 @@ class CareerController @Inject()(cc: CareerControllerComponents)(implicit ec: Ex
   def show(id: String): Action[AnyContent] = CareerAction.async { implicit request =>
     logger.trace(s"show: id = $id")
     careerResourceHandler.lookup(id).map { career =>
+      Ok(Json.toJson(career))
+    }
+  }
+
+  def delete(id: String): Action[AnyContent] = CareerAction.async { implicit request =>
+    logger.trace(s"delete: id = $id")
+    careerResourceHandler.delete(id).map { career =>
       Ok(Json.toJson(career))
     }
   }

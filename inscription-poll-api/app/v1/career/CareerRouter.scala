@@ -12,7 +12,7 @@ import play.api.routing.sird._
 class CareerRouter @Inject()(controller: CareerController) extends SimpleRouter {
   val prefix = "/v1/careers"
 
-  def link(id: CareerId): String = {
+  def link(id: Long): String = {
     import com.netaporter.uri.dsl._
     val url = prefix / id.toString
     url toString()
@@ -27,6 +27,9 @@ class CareerRouter @Inject()(controller: CareerController) extends SimpleRouter 
 
     case GET(p"/$id") =>
       controller.show(id)
+
+    case DELETE(p"/$id") =>
+      controller.delete(id)
   }
 
 }

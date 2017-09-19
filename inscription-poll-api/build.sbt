@@ -13,8 +13,11 @@ libraryDependencies += "com.netaporter" %% "scala-uri" % "0.4.16"
 libraryDependencies += "net.codingwell" %% "scala-guice" % "4.1.0"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play-slick" % "2.0.0",
-  "com.typesafe.play" %% "play-slick-evolutions" % "2.0.0"
+  evolutions,
+  "mysql" % "mysql-connector-java" % "5.1.34",
+  "com.typesafe.play" %% "play-slick" % "3.0.1",
+  "com.typesafe.play" %% "play-slick-evolutions" % "3.0.1",
+  "com.h2database" % "h2" % "1.4.194"
 )
 
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.0.0-M3" % Test
