@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  get 'inscriptions/index'
 
-  resources :articles do
-    resources :comments
-  end
+  get 'inscriptions/new'
 
-  root 'welcome#index'
-
+  root 'inscriptions#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
