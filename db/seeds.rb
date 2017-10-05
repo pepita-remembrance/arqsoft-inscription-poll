@@ -26,14 +26,14 @@ courses = Course.create([
                             {title: 'Estructuras'}
                         ])
 lectures = Lecture.create([
+                              {teacher: teachers[0], course: courses[0], classroom: classrooms[0]},
                               {teacher: teachers[1], course: courses[1], classroom: classrooms[1]},
-                              {teacher: teachers[2], course: courses[2], classroom: classrooms[2]},
-                              {teacher: teachers[2], course: courses[2], classroom: classrooms[3]}
+                              {teacher: teachers[1], course: courses[1], classroom: classrooms[2]}
                           ])
-incriptions = Inscription.create([
-                                     {student: students[1], course: courses[1], classroom: classrooms[1]},
+incriptions = Inscription.create!([
+                                     {student: students[0], course: courses[0], classroom: classrooms[0]},
+                                     {student: students[1], course: courses[0], classroom: classrooms[0]},
+                                     {student: students[2], course: courses[0], classroom: classrooms[0]},
                                      {student: students[2], course: courses[1], classroom: classrooms[1]},
-                                     {student: students[3], course: courses[1], classroom: classrooms[1]},
-                                     {student: students[3], course: courses[2], classroom: classrooms[2]},
-                                     {student: students[4], course: courses[2], classroom: classrooms[3]}
+                                     {student: students[3], course: courses[1], classroom: classrooms[2]}
                                  ])

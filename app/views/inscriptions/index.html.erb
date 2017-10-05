@@ -4,25 +4,23 @@
 
 <table>
   <thead>
-    <tr>
-      <th>Student</th>
-      <th>Course</th>
-      <th>Classroom</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Student</th>
+    <th>Course</th>
+    <th>Classroom</th>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @inscriptions.each do |inscription| %>
+  <% @inscriptions.each do |inscription| %>
       <tr>
-        <td><%= inscription.student %></td>
-        <td><%= inscription.course %></td>
-        <td><%= inscription.classroom %></td>
-        <td><%= link_to 'Show', inscription %></td>
-        <td><%= link_to 'Edit', edit_inscription_path(inscription) %></td>
-        <td><%= link_to 'Destroy', inscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= inscription.student.fullname %></td>
+        <td><%= inscription.course.title %></td>
+        <td><%= inscription.classroom.number %></td>
+        <td><%= link_to 'Remove', inscription, method: :delete, data: {confirm: 'Are you sure?'} %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
